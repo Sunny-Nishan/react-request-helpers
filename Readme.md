@@ -9,4 +9,4 @@ npm install
 npm run start
 ```
 
-REST configurable <Query/> and <Mutation/> components.
+REST configurable `<Query/>` and `<Mutation/>` components.
