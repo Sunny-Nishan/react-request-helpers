@@ -1,3 +1,4 @@
 import { createContext } from "react";
 const APIContext = createContext();
-export default APIContext;
+const { Provider, Consumer } = APIContext;
+export { Provider as APIContextProvider, Consumer as APIContextConsumer };

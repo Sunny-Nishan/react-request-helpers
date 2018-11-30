@@ -1,42 +1,44 @@
 import React, { Component, Fragment } from "react";
-import APIContext from "../containers/APIContext";
+import { APIContextProvider } from "../containers/APIContext";
 import Query from "../containers/Query";
-const getDefaults = {
+const defaults = {
   url: "https://jsonplaceholder.typicode.com",
-  headers: {},
-  data: {}
+  getHeaders: () => {
+    return {
+      //headers
+    };
+  }
 };
 const query = {
-  method: "GET",
-  subUrl: "/users"
+  subUrl: "/users",
+  params: {
+    page: 2
+  }
 };
 class GetAPICall extends Component {
   render() {
     return (
-      <Fragment>
-        <APIContext.Provider value={getDefaults}>
-          Get
-          <Query query={query}>
-            {({ loading, error, data = [] }) => {
-              return (
-                <div>
-                  {loading ? (
-                    "loading..."
-                  ) : (
-                    <ul>
-                      {data.map(
-                        (item, i) =>
-                          i < 20 && <li key={item.id}>{item.name}</li>
-                      )}
-                    </ul>
-                  )}
-                  <span style={{ color: "red" }}>{error}</span>
-                </div>
-              );
-            }}
-          </Query>
-        </APIContext.Provider>
-      </Fragment>
+      <APIContextProvider value={defaults}>
+        Get
+        <Query query={query}>
+          {({ loading, error, data = [] }) => {
+            return (
+              <div>
+                {loading ? (
+                  "loading..."
+                ) : (
+                  <ul>
+                    {data.map(
+                      (item, i) => i < 20 && <li key={item.id}>{item.name}</li>
+                    )}
+                  </ul>
+                )}
+                <span style={{ color: "red" }}>{error}</span>
+              </div>
+            );
+          }}
+        </Query>
+      </APIContextProvider>
     );
   }
 }

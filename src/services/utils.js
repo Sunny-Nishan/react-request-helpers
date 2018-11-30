@@ -18,3 +18,21 @@ export const commonFetch = (request: Irequest) => {
     headers
   });
 };
+
+export const getHeadersFromContext = context => {
+  return context.getHeaders();
+};
+export const extractRequestInfo = (context, req) => {
+  const url = context.url + req.subUrl;
+  const method = req.method;
+  const params = req.params;
+  const data = req.data;
+  const headers = getHeadersFromContext(context);
+  return {
+    url,
+    params,
+    data,
+    method,
+    headers
+  };
+};

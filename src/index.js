@@ -1,4 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import APICalls from "./demo";
-ReactDOM.render(<APICalls />, document.getElementById("root"));
+import {
+  APIContextProvider,
+  APIContextConsumer
+} from "./containers/APIContext";
+import Mutation from "./containers/Mutation";
+import Query from "./containers/Query";
+module.exports = {
+  APIContextProvider,
+  APIContextConsumer,
+  Mutation,
+  Query
+};

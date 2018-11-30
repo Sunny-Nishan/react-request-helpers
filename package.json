@@ -1,22 +1,23 @@
 {
-  "name": "reducer-generator",
+  "name": "react-request-helpers",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Inspired from apollo react client. https://github.com/apollographql/react-apollo Steps to run demo:",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open --hot",
     "eslint": "eslint ./src/index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Nishan B <nishanbende@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "10.0.1",
     "babel-loader": "^8.0.4",
     "eslint": "^5.9.0",
     "eslint-plugin-react": "^7.11.1",
@@ -30,5 +31,16 @@
     "axios": "^0.18.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sunny-Nishan/react-request-helpers.git"
+  },
+  "keywords": [
+    "react-request-helpers"
+  ],
+  "bugs": {
+    "url": "https://github.com/Sunny-Nishan/react-request-helpers/issues"
+  },
+  "homepage": "https://github.com/Sunny-Nishan/react-request-helpers#readme"
 }

@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import APIContext from "../containers/APIContext";
+import { APIContextProvider } from "../containers/APIContext";
 import Mutation from "../containers/Mutation";
-const configDefaults = {
+const defaults = {
   url: "http://httpbin.org",
-  headers: {}
+  getHeaders: () => {
+    return {
+      //headers
+    };
+  }
 };
 const postQuery = {
   method: "POST",
@@ -21,7 +25,7 @@ class PostAPICall extends Component {
   };
   render() {
     return (
-      <APIContext.Provider value={configDefaults}>
+      <APIContextProvider value={defaults}>
         <div>Post</div>
         <br />
         <Mutation mutation={postQuery}>
@@ -34,13 +38,13 @@ class PostAPICall extends Component {
                   type="text"
                   placeholder="Enter text here..."
                 />
-                <button onClick={() => postData(this.state.text)}>
+                <button onClick={() => postData({ data: this.state.text })}>
                   Submit
                 </button>
                 {loading && "Loading..."}
                 <br />
                 <br />
-                <div>{data.json.data}</div>
+                <div>{data.data}</div>
                 <br />
                 <div>IP: {data.origin}</div>
                 <span style={{ color: "red" }}>{error}</span>
@@ -48,7 +52,7 @@ class PostAPICall extends Component {
             );
           }}
         </Mutation>
-      </APIContext.Provider>
+      </APIContextProvider>
     );
   }
 }

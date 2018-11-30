@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
-import APIContext from "./APIContext";
-import axios from "axios";
-import { commonFetch } from "../services/utils";
+import { APIContextConsumer } from "./APIContext";
+import { commonFetch, extractRequestInfo } from "../services/utils";
 type MutationProps = {
   mutation: any,
   children: any
@@ -9,7 +8,7 @@ type MutationProps = {
 class Mutation extends Component<MutationProps> {
   render() {
     return (
-      <APIContext.Consumer>
+      <APIContextConsumer>
         {context => (
           <MutationExecutor
             render={this.props.children}
@@ -17,7 +16,7 @@ class Mutation extends Component<MutationProps> {
             context={context}
           />
         )}
-      </APIContext.Consumer>
+      </APIContextConsumer>
     );
   }
 }
@@ -42,14 +41,17 @@ class MutationExecutor extends Component<
     data: undefined,
     error: null
   };
-  mutator = data => {
+  extractRequestInfo = () => {
     const { context, mutation } = this.props;
+    return extractRequestInfo(context, mutation);
+  };
+  mutator = data => {
     this.setState({
       loading: true,
       error: null
     });
-    const url = context.url + mutation.subUrl;
-    commonFetch({ url, ...mutation, data: { data } })
+    const { url, headers, method } = this.extractRequestInfo();
+    commonFetch({ url, method, data, headers })
       .then(res => {
         this.setState({
           loading: false,

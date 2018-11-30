@@ -1,15 +1,21 @@
 import React, { Component, Fragment } from "react";
-import APIContext from "./APIContext";
-import axios from "axios";
-import { commonFetch } from "../services/utils";
+import { APIContextConsumer } from "./APIContext";
+import { commonFetch, extractRequestInfo } from "../services/utils";
+type query = {
+  method: "get",
+  subUrl: string,
+  data: ?Object,
+  params: ?Object
+};
+
 type QueryProps = {
-  query: any,
+  query: query,
   children: any
 };
 class Query extends Component<QueryProps> {
   render() {
     return (
-      <APIContext.Consumer>
+      <APIContextConsumer>
         {context => (
           <QueryExecutor
             render={this.props.children}
@@ -17,7 +23,7 @@ class Query extends Component<QueryProps> {
             context={context}
           />
         )}
-      </APIContext.Consumer>
+      </APIContextConsumer>
     );
   }
 }
@@ -39,16 +45,19 @@ class QueryExecutor extends Component<QueryExecutorProps, QueryExecutorState> {
     data: undefined,
     error: null
   };
-  componentDidMount = () => {
+  extractRequestInfo = () => {
     const { context, query } = this.props;
+    return extractRequestInfo(context, query);
+  };
+  componentDidMount = () => {
     this.setState({
       loading: true,
       error: null
     });
-    const url = context.url + query.subUrl;
-    commonFetch({ url, ...query })
+    const method = "get";
+    const { url, headers, params } = this.extractRequestInfo();
+    commonFetch({ url, method, params, headers })
       .then(res => {
-        console.log(res);
         this.setState({
           loading: false,
           data: res.data
