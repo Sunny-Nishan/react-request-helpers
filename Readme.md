@@ -3,7 +3,7 @@
 Inspired from apollo react client.
 https://github.com/apollographql/react-apollo
 
-##### REST configurable <Query/> and <Mutation/> components.
+##### REST configurable `<Query/>` and `<Mutation/>` components.
 
 Steps to run example:
 
