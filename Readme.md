@@ -55,7 +55,7 @@ const mutation = {
     method : "post",
     subUrl: "/users"
 };
-class GetAPICall extends Component {
+class PostAPICall extends Component {
     render() {
         return (
             <APIContextProvider value={defaults}>
@@ -70,6 +70,45 @@ class GetAPICall extends Component {
     }
 }
 
+```
+
+`APIContextProvider` Component props :
+
+```
+<APIContextProvider
+    value={{
+        url: "https://jsonplaceholder.typicode.com",
+        getHeaders: () => {
+            return {
+            //headers
+        };
+    }
+
+}}/>
+```
+
+`Query` Component Props :
+
+```
+<Query
+    query={{
+        subUrl="/users" /* Request Endpoint - required*/
+        params={} /* Query String data - optional*/
+    }}
+/>
+```
+
+`Mutation` Component Props :
+
+```
+<Mutation
+    mutation={{
+        method: "post", /* POST, PUT, PATCH, DELETE - required */
+        subUrl: "/user" /* Endpoint - required */,
+        params: {} /* Query String data - optional */
+    }}
+>
+</Mutation>
 ```
 
 Depends upon axios for request functionality.

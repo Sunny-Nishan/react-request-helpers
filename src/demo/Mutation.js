@@ -11,7 +11,8 @@ const defaults = {
 };
 const postQuery = {
   method: "POST",
-  subUrl: "/post"
+  subUrl: "/post",
+  params: {}
 };
 
 class PostAPICall extends Component {
