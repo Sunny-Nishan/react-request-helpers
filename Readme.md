@@ -72,7 +72,7 @@ class PostAPICall extends Component {
 
 ```
 
-`APIContextProvider` Component props :
+## `APIContextProvider` Component props :
 
 ```
 <APIContextProvider
@@ -87,7 +87,7 @@ class PostAPICall extends Component {
 }}/>
 ```
 
-`Query` Component Props :
+## `Query` Component Props :
 
 ```
 <Query
@@ -98,7 +98,7 @@ class PostAPICall extends Component {
 />
 ```
 
-`Mutation` Component Props :
+## `Mutation` Component Props :
 
 ```
 <Mutation
