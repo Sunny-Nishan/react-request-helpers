@@ -92,8 +92,8 @@ class PostAPICall extends Component {
 ```
 <Query
     query={{
-        subUrl="/users" /* Request Endpoint - required*/
-        params={} /* Query String data - optional*/
+        subUrl: "/users" /* Request Endpoint - required*/
+        params: {} /* Query String data - optional*/
     }}
 />
 ```
